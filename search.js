@@ -28,7 +28,8 @@ function fromDir(startPath,ext,sTerm){
             fromDir(filename,ext, sTerm); //recurse
         }
         else if (filename.indexOf(ext)>=(filename.length-3)) {
-          var content = JSON.stringify(fs.readFileSync(filename,"utf8"));
+          var content = fs.readFileSync(filename,"utf8");
+          console.log(content);
   if(content.includes(sTerm)) {
 console.log("-Found - "+__dirname+"\\"+filename)
 results++;
