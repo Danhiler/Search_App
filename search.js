@@ -5,15 +5,18 @@ let ext = process.argv[2];
 let sTerm = process.argv[3];
 if(ext && sTerm) {
   fromDir('./',ext,sTerm);
-  console.log(results+" Result/s");
+  if( results===0) {
+      console.log("No file was found");
+  }
+  else { console.log(results+" Result/s");
+
+  }
+
 } else {
   console.log("USAGE: node search [EXT] [TEXT]");
 }
 
 function fromDir(startPath,ext,sTerm){
-
-  //  console.log('Starting from dir '+startPath+'/');
-
     if (!fs.existsSync(startPath)){
         console.log("no dir ",startPath);
         return;
@@ -29,7 +32,6 @@ function fromDir(startPath,ext,sTerm){
         }
         else if (filename.indexOf(ext)>=(filename.length-3)) {
           var content = fs.readFileSync(filename,"utf8");
-          console.log(content);
   if(content.includes(sTerm)) {
 console.log("-Found - "+__dirname+"\\"+filename)
 results++;
